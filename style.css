@@ -1,0 +1,834 @@
+/* =========================================================
+   EEE 15 Query Portal — Claude Editorial Design System
+   Exact match to Claude Design reference:
+   Warm Linen/Cream Canvas, Terracotta Arc, Newsreader Serif,
+   Palette & Starburst Badges, and Window Mock Frame.
+   ========================================================= */
+
+:root {
+    /* Base Font Families */
+    --font-serif: 'Newsreader', Georgia, Cambria, 'Times New Roman', serif;
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+    /* Light Theme (Claude Warm Sand/Linen Canvas) */
+    --bg-canvas: #FAF6F0;
+    --bg-canvas-subtle: #F4EFEB;
+    --bg-surface: #FFFFFF;
+    --bg-input: #FFFFFF;
+    --bg-pill: #F0EAE1;
+    --bg-pill-hover: #E7E0D5;
+
+    /* Claude Signature Terracotta Burnt Orange */
+    --terracotta: #C85A32;
+    --terracotta-hover: #B44C27;
+    --terracotta-active: #9E3E1C;
+    --terracotta-light: rgba(200, 90, 50, 0.08);
+    --terracotta-shape: #D96F43;
+
+    /* Neutral Typography */
+    --text-primary: #1A1918;
+    --text-secondary: #58534C;
+    --text-muted: #8A837A;
+    --text-placeholder: #A6A097;
+
+    /* Borders & Outlines */
+    --border-subtle: #E8E2D7;
+    --border-medium: #DCD4C7;
+    --border-focus: #C85A32;
+
+    /* Status Colors */
+    --color-success: #2A7E4B;
+    --color-success-bg: rgba(42, 126, 75, 0.08);
+    --color-error: #C23934;
+    --color-error-bg: rgba(194, 57, 52, 0.08);
+
+    /* Shadows */
+    --shadow-window: 0 24px 55px -12px rgba(110, 65, 35, 0.12), 0 2px 8px rgba(0, 0, 0, 0.04);
+    --shadow-card: 0 8px 24px -4px rgba(110, 65, 35, 0.06);
+    --shadow-btn: 0 4px 14px rgba(200, 90, 50, 0.28);
+
+    --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+    --bg-canvas: #161514;
+    --bg-canvas-subtle: #1C1A18;
+    --bg-surface: #22201D;
+    --bg-input: #1C1A18;
+    --bg-pill: #2C2824;
+    --bg-pill-hover: #36322C;
+
+    --terracotta: #E07A5F;
+    --terracotta-hover: #E88970;
+    --terracotta-active: #D36C52;
+    --terracotta-light: rgba(224, 122, 95, 0.12);
+    --terracotta-shape: #C85A32;
+
+    --text-primary: #F8F5EE;
+    --text-secondary: #BDB6AA;
+    --text-muted: #847E74;
+    --text-placeholder: #66625B;
+
+    --border-subtle: #34302A;
+    --border-medium: #423E37;
+    --border-focus: #E07A5F;
+
+    --color-success: #4ADE80;
+    --color-success-bg: rgba(74, 222, 128, 0.12);
+    --color-error: #F87171;
+    --color-error-bg: rgba(248, 113, 113, 0.12);
+
+    --shadow-window: 0 28px 65px -15px rgba(0, 0, 0, 0.65);
+    --shadow-card: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+    --shadow-btn: 0 4px 16px rgba(224, 122, 95, 0.35);
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-canvas);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Terracotta Ambient Arc (Exact Claude aesthetic)
+   ───────────────────────────────────────────────────────── */
+.canvas-accents {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.terracotta-arc {
+    position: absolute;
+    width: 720px;
+    height: 720px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--terracotta-shape) 0%, rgba(200, 90, 50, 0.65) 60%, transparent 80%);
+    bottom: -220px;
+    right: -130px;
+    opacity: 0.85;
+    filter: blur(45px);
+}
+
+[data-theme="dark"] .terracotta-arc {
+    opacity: 0.32;
+    filter: blur(65px);
+}
+
+.terracotta-glow {
+    position: absolute;
+    top: -120px;
+    left: -100px;
+    width: 480px;
+    height: 480px;
+    background: radial-gradient(circle, rgba(200, 90, 50, 0.12) 0%, transparent 70%);
+    filter: blur(50px);
+}
+
+.page-layout {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Top Navbar
+   ───────────────────────────────────────────────────────── */
+.top-nav {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(250, 246, 240, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+}
+
+[data-theme="dark"] .top-nav {
+    background: rgba(22, 21, 20, 0.85);
+}
+
+.top-nav__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top-nav__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.brand-monogram {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background-color: var(--text-primary);
+    color: var(--bg-canvas);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    font-style: italic;
+    user-select: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.brand-institution {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+}
+
+.theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 9999px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-medium);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.78125rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.theme-toggle:hover {
+    background: var(--bg-pill-hover);
+    border-color: var(--terracotta);
+    transform: translateY(-1px);
+}
+
+[data-theme="light"] .theme-toggle__moon { display: none; }
+[data-theme="dark"] .theme-toggle__sun { display: none; }
+
+/* ─────────────────────────────────────────────────────────
+   Main Grid Layout (Split Reference Style)
+   ───────────────────────────────────────────────────────── */
+.main-content {
+    flex: 1;
+    padding: 3rem 0 4rem;
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 3.5rem;
+    align-items: start;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Left Column: Claude Typography & Honorable Faculty Card
+   ───────────────────────────────────────────────────────── */
+.editorial-showcase {
+    position: relative;
+    padding-top: 0.5rem;
+}
+
+.editorial-badge {
+    margin-bottom: 1.25rem;
+}
+
+.editorial-badge__pill {
+    background-color: var(--terracotta);
+    color: #FFFFFF;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.7rem;
+    border-radius: 9999px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.editorial-title {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 4.2vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--text-primary);
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+}
+
+.editorial-title__highlight {
+    font-style: italic;
+    color: var(--terracotta);
+    font-weight: 600;
+    display: inline-block;
+}
+
+.brush-stroke {
+    width: 230px;
+    height: 12px;
+    display: block;
+    margin: 0.15rem 0 1.25rem;
+}
+
+.editorial-subtitle {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin-bottom: 1.75rem;
+    max-width: 420px;
+}
+
+/* Decorative Badges (Palette & Starburst Flower) */
+.editorial-stamps {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.stamp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--terracotta);
+    border: 1px dashed var(--terracotta);
+    background: var(--terracotta-light);
+    transition: transform 0.2s ease;
+}
+
+.stamp:hover {
+    transform: scale(1.08) rotate(6deg);
+}
+
+.stamp--starburst {
+    border: none;
+    background: transparent;
+    color: var(--terracotta);
+}
+
+/* Faculty Honor Card (Dedicated to Dr. Md. Mehedi Hasan Sir) */
+.faculty-honor-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--terracotta);
+    border-radius: 14px;
+    padding: 1.25rem 1.5rem;
+    box-shadow: var(--shadow-card);
+}
+
+.faculty-honor-card__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--terracotta);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.35rem;
+}
+
+.faculty-honor-card__name {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.25;
+    margin-bottom: 0.2rem;
+}
+
+.faculty-honor-card__meta {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Right Column: Claude Editor Window Mock Frame
+   (Matching Prague.html from reference screenshot)
+   ───────────────────────────────────────────────────────── */
+.window-frame {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 18px;
+    box-shadow: var(--shadow-window);
+    overflow: hidden;
+    transition: var(--transition);
+}
+
+.window-frame:hover {
+    border-color: var(--border-medium);
+}
+
+.window-frame__header {
+    background: var(--bg-canvas-subtle);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.window-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.78125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: monospace;
+}
+
+.window-tab__dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: var(--terracotta);
+}
+
+.window-tab__close {
+    font-size: 1.1rem;
+    line-height: 1;
+    color: var(--text-muted);
+    margin-left: 0.2rem;
+}
+
+.window-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.window-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 6px;
+    background: transparent;
+    border: 1px solid var(--border-medium);
+    color: var(--text-secondary);
+}
+
+.window-pill--active {
+    background: var(--terracotta);
+    border-color: var(--terracotta);
+    color: #FFFFFF;
+}
+
+.window-frame__body {
+    padding: 1.75rem 2rem 2rem;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Form Controls
+   ───────────────────────────────────────────────────────── */
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.1rem;
+}
+
+.field {
+    margin-bottom: 1.25rem;
+}
+
+.field__label-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+}
+
+.field__label {
+    display: block;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.4rem;
+}
+
+.field__label .req {
+    color: var(--terracotta);
+    font-weight: 700;
+}
+
+.field__count {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+.field__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.field__input {
+    width: 100%;
+    background-color: var(--bg-input);
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+    border-radius: 8px;
+    padding: 0.7rem 0.95rem;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    outline: none;
+    transition: var(--transition);
+}
+
+.field__input::placeholder {
+    color: var(--text-placeholder);
+}
+
+.field__input:hover {
+    border-color: var(--text-muted);
+}
+
+.field__input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px var(--terracotta-light);
+}
+
+/* Select element */
+.field__select-wrap::after {
+    content: "";
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--text-muted);
+    pointer-events: none;
+}
+
+.field__select {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    padding-right: 2.25rem;
+}
+
+[hidden],
+.field__custom-subject[hidden],
+#custom-subject-wrap[hidden] {
+    display: none !important;
+}
+
+.field__custom-subject {
+    margin-top: 0.65rem;
+    animation: fadeInSlide 0.2s ease-out;
+}
+
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(-4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.field__textarea {
+    resize: vertical;
+    min-height: 125px;
+    line-height: 1.6;
+}
+
+.field__error {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-error);
+    margin-top: 0.3rem;
+    display: none;
+}
+
+.field__error:not(:empty) {
+    display: block;
+}
+
+.field__input.is-invalid {
+    border-color: var(--color-error) !important;
+    background-color: var(--color-error-bg) !important;
+}
+
+/* ─────────────────────────────────────────────────────────
+   Submit Button (Terracotta Pill)
+   ───────────────────────────────────────────────────────── */
+.window-footer-action {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-claude {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.8rem;
+    border-radius: 9999px;
+    background-color: var(--terracotta);
+    color: #FFFFFF;
+    border: none;
+    font-family: var(--font-sans);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: var(--shadow-btn);
+    transition: var(--transition);
+}
+
+.btn-claude:hover {
+    background-color: var(--terracotta-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(200, 90, 50, 0.35);
+}
+
+.btn-claude:active {
+    background-color: var(--terracotta-active);
+    transform: translateY(0);
+}
+
+.btn-claude:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-claude--ghost {
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 1px solid var(--border-medium);
+    box-shadow: none;
+    margin-top: 0.5rem;
+}
+
+.btn-claude--ghost:hover {
+    background-color: var(--bg-pill-hover);
+    border-color: var(--terracotta);
+    color: var(--terracotta);
+}
+
+.btn-claude__label,
+.btn-claude__loading {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-claude__loading {
+    display: none;
+}
+
+.btn-claude.is-loading .btn-claude__label {
+    display: none;
+}
+
+.btn-claude.is-loading .btn-claude__loading {
+    display: inline-flex;
+}
+
+.spinner {
+    width: 15px;
+    height: 15px;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+    border-top-color: #FFFFFF;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─────────────────────────────────────────────────────────
+   Status Feedback Cards
+   ───────────────────────────────────────────────────────── */
+.status-card {
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    animation: fadeInScale 0.25s ease-out;
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.status-card__stamp {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    border: 2px solid var(--color-success);
+}
+
+.status-card__stamp--fail {
+    background: var(--color-error-bg);
+    color: var(--color-error);
+    border-color: var(--color-error);
+}
+
+.status-card__title {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.ref-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    background: var(--bg-pill);
+    border: 1px solid var(--border-subtle);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.ref-pill strong {
+    color: var(--terracotta);
+    font-family: monospace;
+}
+
+.status-card__desc {
+    max-width: 440px;
+    margin: 0 auto 1.5rem;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    color: var(--text-secondary);
+}
+
+.status-card__desc strong {
+    color: var(--text-primary);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Footer & Portfolio Link
+   ───────────────────────────────────────────────────────── */
+.footer {
+    padding: 2rem 0;
+    border-top: 1px solid var(--border-subtle);
+    margin-top: auto;
+}
+
+.footer__inner {
+    text-align: center;
+}
+
+.footer__dev {
+    font-size: 0.8125rem;
+    color: var(--text-muted);
+    letter-spacing: 0.02em;
+}
+
+.dev-link {
+    color: var(--terracotta);
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transition);
+    border-bottom: 1px dotted var(--terracotta);
+    padding-bottom: 1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+}
+
+.dev-link:hover {
+    color: var(--terracotta-hover);
+    border-bottom-style: solid;
+    transform: translateY(-1px);
+}
+
+.dev-link:active {
+    color: var(--terracotta-active);
+}
+
+/* ─────────────────────────────────────────────────────────
+   Responsive Adjustments
+   ───────────────────────────────────────────────────────── */
+@media (max-width: 992px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .terracotta-arc {
+        width: 500px;
+        height: 500px;
+        right: -100px;
+        bottom: -100px;
+    }
+}
+
+@media (max-width: 640px) {
+    .form-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .window-frame__body {
+        padding: 1.25rem 1rem 1.5rem;
+    }
+
+    .window-actions {
+        display: none;
+    }
+
+    .btn-claude {
+        width: 100%;
+    }
+
+    .window-footer-action {
+        justify-content: stretch;
+    }
+}

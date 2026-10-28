@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="description"
+        content="EEE 15 Query Portal — Academic consultation for Dr. Md. Mehedi Hasan Sir, Assistant Professor, Dept. of EEE, JUST. Developed by Md. Mejbahul Haq.">
+    <meta name="theme-color" content="#FAF6F0">
+    <title>EEE 15 Query Portal | Dr. Md. Mehedi Hasan</title>
+
+    <!-- Google Fonts: Newsreader (Editorial Serif) & Plus Jakarta Sans (Clean Modern Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- =========================================================
+         ✏️ আপনার সব তথ্য এখানে এডিট করুন (শুধু এই অংশটুকু বদলাবেন)
+         - লেখা বদলাতে: " " এর ভেতরের লেখা বদলান
+         - নতুন বিষয় যোগ করতে: "বিষয় এর নাম", এভাবে কমা দিয়ে লিখুন
+         - Google Apps Script URL: গুগল শিটের ডিপ্লয় লিংক বসান
+    ========================================================= -->
+    <script>
+        window.CONFIG = {
+            // — ১. ওয়েবসাইটের নাম ও বিশ্ববিদ্যালয় —
+            websiteName: "EEE 15 Query Portal",
+            universityName: "Jashore University of Science and Technology",
+            departmentName: "Department of Electrical and Electronic Engineering",
+
+            // — ২. সম্মানিত কোর্স শিক্ষকের তথ্য —
+            teacherName: "Dr. Md. Mehedi Hasan",
+            teacherDesignation: "Assistant Professor",
+
+            // — ৩. ডেভেলপার ক্রেডিট ও পোর্টফোলিও লিঙ্ক —
+            developerName: "Md. Mejbahul Haq",
+            developerPortfolio: "https://mejbahul19.github.io/",
+
+            // — ৪. কোর্স বিষয় তালিকা (নতুন বিষয় যোগ করতে নিচে কমা দিয়ে লিখুন) —
+            subjects: [
+                "Electrical Circuit 1",
+                "Other (type your own)"
+            ],
+
+            // — ৫. গুগল অ্যাপস স্ক্রিপ্ট লিঙ্ক (ডিপ্লয় করার পর প্রাপ্ত লিংক) —
+            googleScriptURL: "https://script.google.com/macros/s/AKfycby-pISJsAdU2C6B5kOPybsPN9124YUmkARrVcxfw7vIvIScd4E9KdXzueEr6nMgTzOD/exec",
+            URL: "https://script.google.com/macros/s/AKfycby-pISJsAdU2C6B5kOPybsPN9124YUmkARrVcxfw7vIvIScd4E9KdXzueEr6nMgTzOD/exec"
+        };
+    </script>
+</head>
+
+<body>
+
+    <!-- Ambient Terracotta Background (matching Claude Design reference) -->
+    <div class="canvas-accents" aria-hidden="true">
+        <div class="terracotta-arc"></div>
+        <div class="terracotta-glow"></div>
+    </div>
+
+    <div class="page-layout">
+
+        <!-- ===== Top Navbar ===== -->
+        <header class="top-nav">
+            <div class="container top-nav__inner">
+                <div class="top-nav__brand">
+                    <div class="brand-monogram" aria-hidden="true">
+                        <span>15</span>
+                    </div>
+                    <span class="brand-institution" id="site-university">Jashore University of Science and
+                        Technology</span>
+                </div>
+
+                <div class="top-nav__actions">
+                    <button class="theme-toggle" id="theme-toggle-btn" type="button"
+                        aria-label="Toggle Light/Dark Theme">
+                        <svg class="theme-toggle__sun" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="5" />
+                            <line x1="12" y1="1" x2="12" y2="3" />
+                            <line x1="12" y1="21" x2="12" y2="23" />
+                            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                            <line x1="1" y1="12" x2="3" y2="12" />
+                            <line x1="21" y1="12" x2="23" y2="12" />
+                            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" />
+                            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                        </svg>
+                        <svg class="theme-toggle__moon" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                        </svg>
+                        <span class="theme-toggle__label">Theme</span>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- ===== Main Split Layout (Claude Editorial Headline + Window Mock) ===== -->
+        <main class="main-content">
+            <div class="container main-grid">
+
+                <!-- Left Column: Editorial Headline & Honorable Faculty Card -->
+                <section class="editorial-showcase">
+                    <div class="editorial-badge">
+                        <span class="editorial-badge__pill">EEE 15 Batch</span>
+                    </div>
+
+                    <h1 class="editorial-title">
+                        EEE 15, <br>
+                        <span class="editorial-title__highlight">Query Portal:</span>
+                    </h1>
+
+                    <!-- Hand-drawn brush flourish underline -->
+                    <svg class="brush-stroke" viewBox="0 0 280 14" fill="none" xmlns="http://www.w3.org/2000/svg"
+                        aria-hidden="true">
+                        <path d="M3 10C50 3 140 3 277 8" stroke="var(--terracotta)" stroke-width="3.5"
+                            stroke-linecap="round" />
+                    </svg>
+
+                    <p class="editorial-subtitle">
+                        Academic Doubts &amp; Questions For Respected Sir
+                    </p>
+
+                    <!-- Claude Style Badges (Palette & 8-Point Starburst) -->
+                    <div class="editorial-stamps" aria-hidden="true">
+                        <div class="stamp stamp--palette" title="Academic Desk">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="13.5" cy="6.5" r=".5" fill="currentColor" />
+                                <circle cx="17.5" cy="10.5" r=".5" fill="currentColor" />
+                                <circle cx="8.5" cy="7.5" r=".5" fill="currentColor" />
+                                <circle cx="6.5" cy="12.5" r=".5" fill="currentColor" />
+                                <path
+                                    d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 0 1 1.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z" />
+                            </svg>
+                        </div>
+
+                        <div class="stamp stamp--starburst" title="Knowledge Portal">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 0l1.8 7.2L20.5 3.5l-3.7 6.7 7.2 1.8-7.2 1.8 3.7 6.7-6.7-3.7-1.8 7.2-1.8-7.2-6.7 3.7 3.7-6.7-7.2-1.8 7.2-1.8-3.7-6.7 6.7 3.7z" />
+                            </svg>
+                        </div>
+                    </div>
+
+                    <!-- Respectful Faculty Card -->
+                    <div class="faculty-honor-card" id="instructor-banner">
+                        <div class="faculty-honor-card__tag">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
+                                <polygon
+                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                            </svg>
+                            Honorable Course Instructor
+                        </div>
+                        <h2 class="faculty-honor-card__name" id="instructor-name">Dr. Md. Mehedi Hasan</h2>
+                        <p class="faculty-honor-card__meta" id="instructor-designation">Assistant Professor &bull; Dept.
+                            of EEE, JUST</p>
+                    </div>
+
+                    <!-- Hidden bindings for script.js setText -->
+                    <span id="site-title" style="display:none;">EEE 15 Query Portal</span>
+                    <span id="site-subtitle" style="display:none;">Department of Electrical &amp; Electronic
+                        Engineering</span>
+                </section>
+
+                <!-- Right Column: Claude Editor Window Mock Frame -->
+                <section class="window-frame" id="portal-window">
+
+                    <!-- Window Header (matching Prague.html from reference screenshot) -->
+                    <div class="window-frame__header">
+                        <div class="window-tab">
+                            <span class="window-tab__dot"></span>
+                            <span class="window-tab__title">EEE15_Query.portal</span>
+                            <span class="window-tab__close" aria-hidden="true">&times;</span>
+                        </div>
+
+                        <div class="window-actions">
+                            <span class="window-pill window-pill--active">New Query</span>
+                            <span class="window-pill">Direct to Sir</span>
+                        </div>
+                    </div>
+
+                    <!-- Window Content Body -->
+                    <div class="window-frame__body">
+
+                        <!-- Form Section -->
+                        <div id="form-section">
+                            <form id="question-form" novalidate autocomplete="off">
+
+                                <!-- Row: Name & Roll -->
+                                <div class="form-grid-2">
+                                    <!-- Student Name -->
+                                    <div class="field" id="group-name">
+                                        <label class="field__label" for="student-name">
+                                            Student Name <span class="req">*</span>
+                                        </label>
+                                        <div class="field__input-wrap">
+                                            <input type="text" id="student-name" name="studentName" class="field__input"
+                                                placeholder="Your name" required maxlength="100">
+                                        </div>
+                                        <p class="field__error" id="error-name" role="alert"></p>
+                                    </div>
+
+                                    <!-- Roll / ID -->
+                                    <div class="field" id="group-roll">
+                                        <label class="field__label" for="roll-number">
+                                            Roll Number <span class="req">*</span>
+                                        </label>
+                                        <div class="field__input-wrap">
+                                            <input type="text" id="roll-number" name="rollNumber" class="field__input"
+                                                placeholder="e.g. 251101" required maxlength="6" inputmode="numeric"
+                                                title="Roll must be between 251101 and 251137 (EEE 15 Batch)">
+                                        </div>
+                                        <p class="field__error" id="error-roll" role="alert"></p>
+                                    </div>
+                                </div>
+
+                                <!-- Course Subject -->
+                                <div class="field" id="group-subject">
+                                    <label class="field__label" for="subject">
+                                        Subject <span class="req">*</span>
+                                    </label>
+                                    <div class="field__input-wrap field__select-wrap">
+                                        <select id="subject" name="subject" class="field__input field__select" required>
+                                            <option value="" disabled selected>Select subject</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Custom subject write-in (shown ONLY when Other is selected) -->
+                                    <div class="field__input-wrap field__custom-subject" id="custom-subject-wrap" hidden
+                                        style="display: none;">
+                                        <input type="text" id="custom-subject" class="field__input"
+                                            placeholder="Type your subject name" maxlength="100">
+                                    </div>
+                                    <p class="field__error" id="error-subject" role="alert"></p>
+                                </div>
+
+                                <!-- Question Details -->
+                                <div class="field" id="group-question">
+                                    <div class="field__label-row">
+                                        <label class="field__label" for="question-details">
+                                            Question <span class="req">*</span>
+                                        </label>
+                                        <span class="field__count"><span id="char-count">0</span> / 2000</span>
+                                    </div>
+                                    <textarea id="question-details" name="questionDetails"
+                                        class="field__input field__textarea" placeholder="Write your question here..."
+                                        required rows="5" maxlength="2000"></textarea>
+                                    <p class="field__error" id="error-question" role="alert"></p>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="window-footer-action">
+                                    <button type="submit" class="btn-claude" id="submit-btn">
+                                        <span class="btn-claude__label" id="btn-text">
+                                            Submit Question
+                                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2.5">
+                                                <line x1="22" y1="2" x2="11" y2="13" />
+                                                <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                                            </svg>
+                                        </span>
+                                        <span class="btn-claude__loading" id="btn-loader">
+                                            <span class="spinner"></span>
+                                            Submitting...
+                                        </span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Success Section -->
+                        <div class="status-card status-card--success" id="success-message" hidden>
+                            <div class="status-card__stamp">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg>
+                            </div>
+                            <h2 class="status-card__title">Submitted Successfully</h2>
+                            <div class="ref-pill">
+                                <span>Ref:</span>
+                                <strong id="success-question-id">ASK-00000</strong>
+                            </div>
+                            <p class="status-card__desc">
+                                Your question has been recorded for <strong>Dr. Md. Mehedi Hasan Sir</strong>.
+                            </p>
+                            <button type="button" class="btn-claude btn-claude--ghost" id="new-question-btn">
+                                Submit Another Question
+                            </button>
+                        </div>
+
+                        <!-- Error Section -->
+                        <div class="status-card status-card--error" id="error-message" hidden>
+                            <div class="status-card__stamp status-card__stamp--fail">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <circle cx="12" cy="12" r="10" />
+                                    <line x1="12" y1="8" x2="12" y2="12" />
+                                    <line x1="12" y1="16" x2="12.01" y2="16" />
+                                </svg>
+                            </div>
+                            <h2 class="status-card__title">Submission Failed</h2>
+                            <p class="status-card__desc" id="error-detail">
+                                Could not submit. Please check your internet connection and try again.
+                            </p>
+                            <button type="button" class="btn-claude btn-claude--ghost" id="retry-btn">
+                                Try Again
+                            </button>
+                        </div>
+
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- ===== Footer ===== -->
+        <footer class="footer">
+            <div class="container footer__inner">
+                <p class="footer__dev">
+                    developed by <a href="https://mejbahul19.github.io/" target="_blank" rel="noopener noreferrer"
+                        class="dev-link" id="developer-link" title="Visit Md. Mejbahul Haq's Portfolio"><span
+                            id="developer-credit">Md. Mejbahul Haq</span> ↗</a> &bull; Dept. of EEE, JUST
+                </p>
+                <p class="footer__copy" id="footer-text" style="display:none;">
+                    &copy; <span id="footer-year">2026</span>
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
